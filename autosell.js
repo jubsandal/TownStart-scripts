@@ -16,7 +16,7 @@
     'use strict';
 
     function getAutoSellList() {
-        return JSON.parse(localStorage.getItem("auto_sell_config:p2e5"));
+        return JSON.parse(localStorage.getItem("auto_sell_config:"+Game.gameData.gameId));
     }
     const sellTimer = 10; // Seconds between selling
     var craftedItem = []
@@ -40,7 +40,7 @@
         if (document.getElementById("playnow-container") && document.getElementById("playnow-container").style.visibility !== "hidden") {
             document.getElementById("playButton").click();
         }
-
+[O
 
 
 
@@ -78,7 +78,7 @@
 
     let configOpened = false
     function toggleConfig() {
-        //console.log(Game)
+        console.log(Game)
         if (configOpened) {
             configOpened = false
             CloseConfig()
@@ -101,7 +101,7 @@
     function SaveConfig() {
         localStorage.setItem("StartSelling",document.getElementById("StartSellingCheckBox").checked);
         localStorage.setItem("ClearConsole",document.getElementById("ClearConsoleCheckBox").checked);
-        localStorage.setItem("auto_sell_config:p2e5",document.getElementById("configTxt").value);
+        localStorage.setItem("auto_sell_config:"+Game.gameData.gameId,document.getElementById("configTxt").value);
     }
 
     function CloseConfig(){
@@ -109,7 +109,7 @@
         SaveConfig()
     }
     function ClearData(){
-        localStorage.removeItem("auto_sell_config:p2e5");
+        localStorage.removeItem("auto_sell_config:"+Game.gameData.gameId);
         document.getElementById("configTxt").value = "";
     }
 
