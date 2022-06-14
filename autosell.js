@@ -7,15 +7,6 @@
 // @match        *://*.sandbox-games.com/*
 // @grant        GM_setValue
 // @grant        GM_listValues
-// ==UserScript==
-// @name         Town Star Multiple Item Auto-Sell
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  auto sell
-// @author       siisgoo by jiro
-// @match        *://*.sandbox-games.com/*
-// @grant        GM_setValue
-// @grant        GM_listValues
 // @grant        GM_getValue
 // @grant        GM_deleteValue
 // @run-at       document-start
@@ -78,8 +69,8 @@
     }
 
     function removeFromList() {
-        if (craftedItem.findIndex(e => e.name === document.getElementById("ListOfAllItem").value)>-1) {
-            craftedItem.splice(craftedItem.findIndex(e => e.name === document.getElementById("ListOfAllItem").value),1);
+        if (craftedItem.findIndex(e => e.item === document.getElementById("ListOfAllItem").value)>-1) {
+            craftedItem.splice(craftedItem.findIndex(e => e.item === document.getElementById("ListOfAllItem").value),1);
         }
         document.getElementById("configTxt").value = JSON.stringify(craftedItem);
         SaveConfig()
@@ -87,7 +78,7 @@
 
     let configOpened = false
     function toggleConfig() {
-        console.log(Game)
+        //console.log(Game)
         if (configOpened) {
             configOpened = false
             CloseConfig()
@@ -99,6 +90,7 @@
 
     function LoadConfig(){
         craftedItem = getAutoSellList()
+        document.getElementById("configTxt").value = JSON.stringify(craftedItem)
         document.getElementById("ConfigDiv").style.visibility = "visible";
         //To close all fullscreens
         for(var i =0;i<document.getElementsByClassName ("close-button").length;i++)
